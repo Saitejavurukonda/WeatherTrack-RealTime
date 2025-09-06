@@ -3,7 +3,7 @@
 A simple weather application built using **HTML**, **CSS**, and **JavaScript** that fetches real-time weather data and a 3-day forecast using the **WeatherAPI**.
 
 ---
-👉 Live Demo: http://127.0.0.1:5500/index.html
+
 
 ## 🚀 Features
 - 🌍 Search weather by location name.
