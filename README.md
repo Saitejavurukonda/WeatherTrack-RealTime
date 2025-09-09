@@ -1,4 +1,4 @@
-# # 🌦 WeatherTrack-RealTime
+ # 🌦 WeatherTrack-RealTime
 
 
 A simple weather **project** built using **HTML**, **CSS**, and **JavaScript** that fetches **real-time weather data** and provides a **3-day forecast** using the **WeatherAPI**.
