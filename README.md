@@ -1,6 +1,8 @@
-# 🌦 Weather App
+# # 🌦 WeatherTrack-RealTime
 
-A simple weather application built using **HTML**, **CSS**, and **JavaScript** that fetches real-time weather data and a 3-day forecast using the **WeatherAPI**.
+
+A simple weather **project** built using **HTML**, **CSS**, and **JavaScript** that fetches **real-time weather data** and provides a **3-day forecast** using the **WeatherAPI**.
+
 
 ---
 
