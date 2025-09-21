@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WeatherTrack</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div id="weather-container">
-    <h2>WeatherTrack</h2>
+    <h1>WeatherTrack</h1>
 
-
-
-    
     <div id="location-container">
       <input type="text" id="location-input" placeholder="Enter location">
       <button id="submit-btn">Get Weather</button>
     </div>
+
     <div id="weather-info">
-      <div id="current-weather"></div>
-      <div id="forecast-weather"></div>
+      <section id="current-weather" aria-label="Current Weather"></section>
+      <section id="forecast-weather" aria-label="Forecast Weather"></section>
     </div>
   </div>
 

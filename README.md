@@ -22,13 +22,10 @@ Live Demo: [WeatherTrack-RealTime](https://saitejavurukonda.github.io/WeatherTra
 - **JavaScript (Fetch API)** – Fetching and displaying data  
 - **WeatherAPI** – Real-time weather data  
 
----
-
 ## 📸 Screenshot
-![Screenshot1](images/Screenshot1.png)  
-![Screenshot2](images/Screenshot2.png)  
+![Screenshot1](./images/Screenshot1.png)  
+![Screenshot2](./images/Screenshot2.png)
 
----
 
 ## 📂 Installation / Usage
 ```bash

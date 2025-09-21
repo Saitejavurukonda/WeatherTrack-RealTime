@@ -1,4 +1,5 @@
-const apiKey = '1931f678aa824d36844143836251208'; // Your WeatherAPI key
+// WeatherAPI key
+const apiKey = '1931f678aa824d36844143836251208'; // your WeatherAPI key
 
 const submitButton = document.getElementById('submit-btn');
 const locationInput = document.getElementById('location-input');
@@ -6,8 +7,8 @@ const currentWeatherDiv = document.getElementById('current-weather');
 const forecastWeatherDiv = document.getElementById('forecast-weather');
 
 submitButton.addEventListener('click', () => {
-  const location = locationInput.value;
-  if (location.trim() === '') {
+  const location = locationInput.value.trim();
+  if (!location) {
     alert('Please enter a location');
     return;
   }
@@ -16,27 +17,31 @@ submitButton.addEventListener('click', () => {
 
 async function fetchWeather(location) {
   try {
-    const currentWeatherURL = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
-    const currentWeatherResponse = await fetch(currentWeatherURL);
-    const currentWeatherData = await currentWeatherResponse.json();
+    const locationEncoded = encodeURIComponent(location);
 
-    const forecastWeatherURL = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=3&aqi=no&alerts=no`;
-    const forecastWeatherResponse = await fetch(forecastWeatherURL);
-    const forecastWeatherData = await forecastWeatherResponse.json();
+    // Fetch current weather
+    const currentURL = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationEncoded}`;
+    const currentRes = await fetch(currentURL);
+    const currentData = await currentRes.json();
 
-    displayCurrentWeather(currentWeatherData);
-    displayForecastWeather(forecastWeatherData);
-  } catch (error) {
-    console.log('Error:', error);
-    alert('An error occurred while fetching weather data');
+    // Fetch 3-day forecast
+    const forecastURL = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${locationEncoded}&days=3`;
+    const forecastRes = await fetch(forecastURL);
+    const forecastData = await forecastRes.json();
+
+    displayCurrentWeather(currentData);
+    displayForecastWeather(forecastData);
+  } catch (err) {
+    console.error(err);
+    alert('Location not found or API error');
   }
 }
 
 function displayCurrentWeather(data) {
-  const location = data.location.name;
+  const location = `${data.location.name}, ${data.location.country}`;
   const tempC = data.current.temp_c;
   const condition = data.current.condition.text;
-  const icon = data.current.condition.icon; // Icon URL
+  const icon = data.current.condition.icon;
 
   currentWeatherDiv.innerHTML = `
     <h3>Current Weather</h3>
@@ -48,20 +53,21 @@ function displayCurrentWeather(data) {
 }
 
 function displayForecastWeather(data) {
+  let forecastHTML = '<h3>3-Day Forecast</h3>';
   const forecast = data.forecast.forecastday;
-  let forecastHTML = '<h3>Forecast Weather</h3>';
 
   forecast.forEach(day => {
     const date = day.date;
-    const maxTempC = day.day.maxtemp_c;
-    const minTempC = day.day.mintemp_c;
-    const icon = day.day.condition.icon;
+    const maxTemp = day.day.maxtemp_c;
+    const minTemp = day.day.mintemp_c;
     const condition = day.day.condition.text;
+    const icon = day.day.condition.icon;
 
     forecastHTML += `
       <p>
-        <strong>${date}</strong> - Max: ${maxTempC}°C, Min: ${minTempC}°C 
+        <strong>${date}</strong> - Max: ${maxTemp}°C, Min: ${minTemp}°C
         <img src="https:${icon}" alt="${condition}" style="vertical-align: middle;">
+        ${condition}
       </p>
     `;
   });
